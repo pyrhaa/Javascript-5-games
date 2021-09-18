@@ -9,6 +9,7 @@ const startGame = () => {
   let currentTime = 10;
   let hitPosition;
   let moleTimerId = null;
+  let countDownTimerId = null;
   const square = squares;
 
   //get each square(argument), random them within add mole and put the id(string) in hitposition.
@@ -21,7 +22,7 @@ const startGame = () => {
     hitPosition = randomPosition.id;
   };
 
-  //After, when click on mole increment result
+  //When click on mole increment result
   const mouseClick = () => {
     square.forEach((el) => {
       el.addEventListener('mouseup', () => {
@@ -37,9 +38,23 @@ const startGame = () => {
   const moveMole = () => {
     moleTimerId = setInterval(randomSquare, 1000);
   };
-  moveMole();
-  mouseClick();
 
+  const countDown = () => {
+    currentTime--;
+    timeLeft.textContent = currentTime.toString();
+    console.log(typeof timeLeft.textContent, typeof currentTime);
+
+    if (currentTime === 0) {
+      clearInterval(countDownTimerId);
+      alert('Game Over');
+    }
+  };
+
+  countDownTimerId = setInterval(countDown, 1000);
+
+  // moveMole();
+  // mouseClick();
+  // let caca = setInterval(countDown(), 1000);
   // while (countDown) {
   //   randomSquare(square)
   // }

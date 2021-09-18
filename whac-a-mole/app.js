@@ -13,14 +13,10 @@ const moveMole = () => {
   moleTimerId = setInterval(randomSquare, 1000);
 };
 
-const resetGame = (timerId) => {
-  timerId = setInterval();
-};
-
-const countDown = (time) => {
+const countDown = (time, left) => {
   // currentTime--;
   time--;
-  timeLeft.textContent = time;
+  left.textContent = time;
   if (time === 0) {
     clearInterval(timerId);
     alert('GAME OVER, your score is ' + result);
